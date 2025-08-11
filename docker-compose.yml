@@ -1,0 +1,12 @@
+services:
+  web:
+    platform: linux/amd64
+    build:
+      context: .
+    volumes:
+      - ".:/code:delegated"
+    command: bash -c "rm -rf /code/tmp/pids && foreman start -f Procfile.dev"
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: development
